@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, AnonymousUserMixin, current_user
+from flask_login import LoginManager, current_user
 from flask_wtf import CSRFProtect
 
 app = Flask('app')
@@ -12,11 +12,5 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.init_app(app)
 csrf = CSRFProtect(app)
-
-@login_manager.user_loader
-def load_user(user_id):
-    from app.models import Admin
-    user = Admin.query.get(int(user_id))
-    return user
 
 from app import views, commands
