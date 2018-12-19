@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    <link rel="stylesheet" href="index.css">
+
+    <table class="table">
+
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Date</th>
+          <th>Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for task in tasks %}
+    <tr>
+      <td>{{task.title}}</td>
+      <td>{{task.description}}</td>
+      <td>{{task.date}}</td>
+        <td>{{ task.status }}</td>
+        <td><a href="/finish_task/{{task.id}}"><button type="button" class="btn btn-primary">Finish</button></a></td>
+      <td><a href="/edit_task/{{task.id}}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+      <td><a href="/delete_task/{{task.id}}"><button type="button" class="btn btn-primary">Delete</button></a></td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+    <td><a href="/completed_tasks"><button type="button" class="btn btn-primary">Completed Tasks</button></a></td>
+<td><a href="/uncompleted_tasks"><button type="button" class="btn btn-primary">Uncompleted Tasks</button></a></td>
+<td><a href="/create_task"><button type="button" class="btn btn-primary">Create Tasks</button></a></td>
+
+{% endblock %}

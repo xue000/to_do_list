@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>To Do List</h1>
+    <a href="/task"><button type="button" class="btn btn-primary">View Tasks</button></a>
+    <a href="/create_task"><button type="button" class="btn btn-primary">Create tasks</button></a>
+    <h1>Completed Tasks</h1>
+    <a href="/completed_tasks"><button type="button" class="btn btn-primary">View Completed Tasks</button></a>
+    <h1>Uncompleted Tasks</h1>
+    <a href="/uncompleted_tasks"><button type="button" class="btn btn-primary">View Uncompleted Tasks</button></a>
+{% endblock %}

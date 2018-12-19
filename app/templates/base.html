@@ -1,0 +1,83 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/static/css/print.css">
+
+{% if title %}
+    <title>To Do List - {{ title }}</title>
+{% else %}
+    <title>To Do List</title>
+{% endif %}
+
+<style>
+    ul#menu li {
+        display:inline;
+    }
+    body{
+        background-color: khaki;
+    }
+    .gcs-footer{
+        mrgin-top: 20px;
+        background: black;
+        width: 100%;
+        height: 80px;
+        text-align: center;
+        color: white;
+        text-align: center;
+        position:fixed;
+        bottom: 0px;
+    }
+</style>
+</head>
+
+  <body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    </div>
+    <ul class="nav navbar-nav">
+        {% if current_user.is_authenticated %}
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tasks
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/task">View Tasks</a></li>
+            <li><a href="/create_task">Create Task</a></li>
+              <li><a href="/completed_tasks">Completed Task</a> </li>
+              <li><a href="/uncompleted_tasks">Uncompleted Task</a> </li>
+          </ul>
+      </li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout"><span class="navbar-nav mr-auto">Logout</span></a></li>
+    <li><a href="/"><span class="glyphicon glyphicon-remove"></span> </a></li>
+      {% endif %}
+</ul>
+  </div>
+</nav>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        {% with messages = get_flashed_messages(category_filter=['error']) %}
+          {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>Error!</strong> {{ message }}
+            </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+
+  </body>
+
+</html>
